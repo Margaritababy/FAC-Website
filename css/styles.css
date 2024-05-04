@@ -1,0 +1,357 @@
+* {
+  box-sizing: border-box;
+}
+
+body {
+  font-family: serif;
+  font-size: 16px;
+  background: #E3DFD2;
+  color: #585247;
+  text-transform: uppercase;
+}
+
+section {
+  perspective: 500px;
+  perspective-origin: 50% 40%;
+}
+
+h1 {
+  margin: 200px auto 50px;
+}
+
+h1, h2, h3 {
+  text-align: center;
+  font-weight: normal;
+  /* width: 900px; */
+}
+
+.spin {
+  position: relative;
+  font-size: 25px;
+  cursor: pointer;
+  z-index: 0;
+  margin: 10%;
+}
+
+/* CAROUSEL */
+.carousel {
+  position: absolute;
+  width: 900px;
+  height: 300px;
+  left: 0;
+  right: 0;
+  top: 70px;
+  /* border: 2px solid red; */
+  margin: auto;
+  transform-style: preserve-3d;
+  z-index: 1;
+  /* display: none; */
+}
+
+.slide-left,
+.slide-right,
+.slide[data-active] {
+  transition: width 0.5s, height 0.5s, opacity 0.5s ease; /* Apply transition */
+  background-color: white;
+  /* z-index: 2; */
+}
+
+.slide-left,
+.slide-right,
+.slide[data-active].visible {
+  opacity: 1;
+}
+
+.slide-left.hidden, .slide-right.hidden, .slide-middle.hidden {
+  opacity: 0;
+}
+
+.slide {
+  position: absolute;
+  opacity: 0;
+  border: 2px black solid;
+}
+
+.slide-middle {
+  position: absolute;
+  width: 350px;
+  height: 300px;
+  left: calc(50% - 175px);
+  /* top: -4px; */
+  opacity: 1;
+  transform-origin: center center;
+}
+
+.expanded {
+  width: 700px;
+  height: 600px;
+  left: calc(50% - 350px);
+  z-index: 3;
+}
+
+.slide-left {
+  width: 350px;
+  height: 300px;
+  transform-origin: 50% 0;
+  transform: rotateY(-30deg) translateZ(-138px);
+  left: -184px;
+  /* top: -4px; */
+  opacity: 1;
+}
+
+.slide-right {
+  width: 350px;
+  height: 300px;
+  transform-origin: 50% 0;
+  transform: rotateY(30deg) translateZ(-138px);
+  right: -184px;
+  /* top: -1px; */
+  opacity: 1;
+}
+
+.icon {
+  font-size: 24px;
+}
+
+.carousel-button {
+  position: absolute;
+  width: 40px;
+  height: 40px;
+  background: none;
+  margin: 0;
+  padding: 0;
+  border: none;
+  z-index: 2;
+  top: 50%;
+  transform: translateY(-50%);
+  cursor: pointer;
+  padding: 0 .5rem;
+}
+
+.carousel-button.prev {
+  left: 0.2rem;
+}
+
+.carousel-button.next {
+  right: 0.2rem;
+}
+
+img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+}
+
+.data-slides {
+  position: relative;
+  transform-style: preserve-3d;
+  opacity: 1;
+  transition: opacity 0.5s ease;
+  z-index: 2;
+}
+
+/* ZOETROPE */
+.zoetrope {
+  position: relative;
+  /* border: 2px solid #585247; */
+  width: 900px;
+  height: 111px;
+  margin: 5% auto;
+  transform-style: preserve-3d;
+  cursor: pointer;
+  /* animation: zoetrope 3s ease-in-out infinite; */
+  /* transition: transform 0.3s ease; */
+}
+
+.animate {
+  animation: zoetrope 3s ease-in-out;
+}
+
+.animate-chevron-next {
+  animation: chevron-next 1.5s ease-in-out;
+}
+
+.animate-chevron-prev {
+  animation: chevron-prev 1.5s ease-in-out;
+}
+
+.zoetrope div {
+  position: absolute;
+  border: 2px solid black;
+  width: 140px;
+  height: 120px;
+  left: calc(50% - 70px);
+  bottom: 50%;
+  transform-origin: 50% 0;
+  background-image: url("/Users/jamesmiller/Documents/Founders & Coders/Website Zoetrope/images/DSC_0129.JPG");
+  background-size: 100%;
+  background-repeat: no-repeat;
+  transform-style: preserve-3d;
+  backface-visibility: hidden;
+}
+
+.zoetrope div:before {
+  content: "";
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background: white;
+  transform: translateZ(-1px);
+}
+
+/* .zoetrope div:after {
+  content: "HELLO";
+  position: absolute;
+  top: -100px;
+  width: 100%;
+  height: 100%;
+  transform: translateZ(-1px);
+} */
+
+/* .zoetrope div:nth-child(1) {
+  transform: scale(0.25) rotateY(30deg) translateZ(-320px) translateY(1500px);
+} 
+
+.zoetrope div:nth-child(2) {
+  transform: scale(0.25) rotateY(60deg) translateZ(-320px) translateY(1500px);
+}
+
+.zoetrope div:nth-child(3) {
+  transform: scale(0.25) translateY(1500px) rotateY(90deg) translateZ(-320px);
+}
+
+.zoetrope div:nth-child(4) {
+  transform: scale(0.25) translateY(1500px) rotateY(120deg) translateZ(-320px);
+}
+
+.zoetrope div:nth-child(5) {
+  transform: scale(0.25) translateY(1500px) rotateY(150deg) translateZ(-320px);
+}
+
+.zoetrope div:nth-child(6) {
+  transform: scale(0.25) rotateY(180deg) translateY(1500px) translateZ(-320px);
+  opacity: 20%;
+}
+
+.zoetrope div:nth-child(7) {
+  transform: scale(0.25) translateY(1500px) rotateY(210deg) translateZ(-320px);
+}
+
+.zoetrope div:nth-child(8) {
+  transform: scale(0.25) translateY(1500px) rotateY(240deg) translateZ(-320px);
+}
+
+.zoetrope div:nth-child(9) {
+  transform: scale(0.25) translateY(1500px) rotateY(270deg) translateZ(-320px);
+}
+
+.zoetrope div:nth-child(10) {
+  transform: scale(0.25) translateY(1500px) rotateY(300deg) translateZ(-320px);
+} 
+
+.zoetrope div:nth-child(11) {
+  transform: scale(0.25) translateY(1500px) rotateY(330deg) translateZ(-320px);
+} 
+
+.zoetrope div:nth-child(12) {
+  transform: scale(0.25) translateY(1500px) rotateY(0deg) translateZ(-320px);
+}    */
+
+/* OG version */
+
+.zoetrope div:nth-child(1) {
+  transform: rotateY(30deg) translateZ(-300px);
+} 
+
+.zoetrope div:nth-child(2) {
+  transform: rotateY(60deg) translateZ(-300px);
+}
+
+.zoetrope div:nth-child(3) {
+  transform: rotateY(90deg) translateZ(-300px);
+}
+
+.zoetrope div:nth-child(4) {
+  transform: rotateY(120deg) translateZ(-300px);
+}
+
+.zoetrope div:nth-child(5) {
+  transform: rotateY(150deg) translateZ(-300px);
+}
+
+.zoetrope div:nth-child(6) {
+  transform: rotateY(180deg) translateZ(-300px);
+}
+
+.zoetrope div:nth-child(7) {
+  transform: rotateY(210deg) translateZ(-300px);
+}
+
+.zoetrope div:nth-child(8) {
+  transform: rotateY(240deg) translateZ(-300px);
+}
+
+.zoetrope div:nth-child(9) {
+  transform: rotateY(270deg) translateZ(-300px);
+}
+
+.zoetrope div:nth-child(10) {
+  transform: rotateY(300deg) translateZ(-300px);
+} 
+
+.zoetrope div:nth-child(11) {
+  transform: rotateY(330deg) translateZ(-300px);
+} 
+
+.zoetrope div:nth-child(12) {
+  transform: rotateY(0deg) translateZ(-300px);
+}
+
+@keyframes zoetrope {
+  to {
+    transform: rotateY(1080deg);
+  }
+}/*# sourceMappingURL=styles.css.map */
+
+@keyframes chevron-next {
+  to {
+    transform: rotateY(-30deg);
+  }
+}
+
+@keyframes chevron-prev {
+  to {
+    transform: rotateY(30deg);
+  }
+}
+
+nav {
+  position: absolute;
+  padding: 10px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 0;
+  /* top: 10px; */
+}
+
+ul {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+}
+
+li {
+  display: inline-block;
+  margin-right: 20px;
+}
+
+a {
+  color: #585247;
+  text-decoration: none;
+}
+
+
+
+
