@@ -6,7 +6,8 @@ body {
   font-family: serif;
   font-size: 16px;
   background: #E3DFD2;
-  color: #585247;
+  /* color: #585247; */
+  color: black;
   text-transform: uppercase;
 }
 
