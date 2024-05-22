@@ -121,17 +121,20 @@ spinElement.addEventListener("click", () => {
 
 // Chevron spin next
 const chevronNextElement = document.querySelector(".next");
-const dataSlidesElement = document.querySelector(".data-slides");
+const contentBlocks = document.querySelectorAll(".content-block");
+const contentContainer = document.querySelector(".content-container")
 console.log(chevronNextElement);
 
 chevronNextElement.addEventListener("click", () => {
   setTimeout(() => {
     zoetrope.classList.toggle("animate-chevron-next");
+    contentContainer.classList.toggle("animate-content-next");
   }, 100);
 
+
   zoetrope.addEventListener("animationend", () => {
-    // document.querySelector(".data-slides").classList.remove("elementHidden");
     zoetrope.classList.remove("animate-chevron-next");
+    contentContainer.classList.remove("animate-content-next");
   })
 });
 

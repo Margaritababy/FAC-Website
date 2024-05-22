@@ -19,19 +19,14 @@ body {
   perspective-origin: 50% 0%;
 }
 
-@media screen and (max-width: 1440px) {
-  .section-zoetrope {
-    perspective: 1000px; 
-    /* perspective-origin: 50% 50%;  */
-  }
-}
+
 
 .vertical-line {
   position: absolute;
-  top: 5vh;
+  top: 5%;
   left: 50%;
   width: 2px;
-  height: 80vh;
+  height: 200vh;
   background-color: whitesmoke;
   z-index: 0;
   /* box-shadow: 0 0 10px 1px white; */
@@ -78,6 +73,7 @@ a {
 .slide-right,
 .slide[data-active] {
   transition: width 0.5s, height 0.5s, opacity 0.5s ease; /* Apply transition */
+  text-align: center;
   /* background-color: whitesmoke; */
   /* z-index: 2; */
 }
@@ -139,9 +135,31 @@ a {
   opacity: 1;
 }
 
-.icon {
-  font-size: 24px;
+@media screen and (max-width: 1440px) {
+  .section-zoetrope {
+    perspective: 1000px; 
+    /* perspective-origin: 50% 50%;  */
+  }
+
+  body {font-size: 14px;}
+
+  .slide-left, .slide-right, .slide-middle {
+    top: -160px;
+  }
+
+  .slide-left {
+    left: -20px;
+  }
+
+  .slide-right {
+    right: -20px;
+  }
+
 }
+
+/* .icon {
+  font-size: 24px;
+} */
 
 .carousel-button {
   position: absolute;
@@ -207,6 +225,14 @@ img {
   animation: chevron-prev 1.5s ease-in-out;
 }
 
+.animate-content-next {
+  animation: rotate-content-next 1.5s ease-in-out;
+}
+
+.animate-content-prev {
+  animation: rotate-content-prev 1.5s ease-in-out;
+}
+
 .zoetrope div {
   position: absolute;
   /* border: 2px solid black; */
@@ -231,66 +257,6 @@ img {
   transform: translateZ(-1px);
   border-radius: 5px;
 }
-
-/* .zoetrope div:after {
-  content: "HELLO";
-  position: absolute;
-  top: -100px;
-  width: 100%;
-  height: 100%;
-  transform: translateZ(-1px);
-} */
-
-/* .zoetrope div:nth-child(1) {
-  transform: scale(0.25) rotateY(30deg) translateZ(-320px) translateY(1500px);
-} 
-
-.zoetrope div:nth-child(2) {
-  transform: scale(0.25) rotateY(60deg) translateZ(-320px) translateY(1500px);
-}
-
-.zoetrope div:nth-child(3) {
-  transform: scale(0.25) translateY(1500px) rotateY(90deg) translateZ(-320px);
-}
-
-.zoetrope div:nth-child(4) {
-  transform: scale(0.25) translateY(1500px) rotateY(120deg) translateZ(-320px);
-}
-
-.zoetrope div:nth-child(5) {
-  transform: scale(0.25) translateY(1500px) rotateY(150deg) translateZ(-320px);
-}
-
-.zoetrope div:nth-child(6) {
-  transform: scale(0.25) rotateY(180deg) translateY(1500px) translateZ(-320px);
-  opacity: 20%;
-}
-
-.zoetrope div:nth-child(7) {
-  transform: scale(0.25) translateY(1500px) rotateY(210deg) translateZ(-320px);
-}
-
-.zoetrope div:nth-child(8) {
-  transform: scale(0.25) translateY(1500px) rotateY(240deg) translateZ(-320px);
-}
-
-.zoetrope div:nth-child(9) {
-  transform: scale(0.25) translateY(1500px) rotateY(270deg) translateZ(-320px);
-}
-
-.zoetrope div:nth-child(10) {
-  transform: scale(0.25) translateY(1500px) rotateY(300deg) translateZ(-320px);
-} 
-
-.zoetrope div:nth-child(11) {
-  transform: scale(0.25) translateY(1500px) rotateY(330deg) translateZ(-320px);
-} 
-
-.zoetrope div:nth-child(12) {
-  transform: scale(0.25) translateY(1500px) rotateY(0deg) translateZ(-320px);
-}    */
-
-/* OG version */
 
 .zoetrope div:nth-child(1) {
   transform: rotateY(30deg) translateZ(-300px);
@@ -358,6 +324,18 @@ img {
   }
 }
 
+@keyframes rotate-content-prev {
+  to {
+    transform: translateY(-600px);
+  }
+}
+
+@keyframes rotate-content-next {
+  to {
+    transform: translateY(600px);
+  }
+}
+
 nav {
   position: absolute;
   padding: 10px;
@@ -385,11 +363,14 @@ a {
 }
 
 .content-container {
-  /* border: 1px solid black; */
+  border: 1px solid black;
   position: relative;
-  margin: auto;
-  width: 600px;
-  /* height: 200px;  */
+  margin: 40px auto;
+  width: 900px;
+  /* background-color: whitesmoke; 
+  border-radius: 50%; 
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);  */
+  height: 600px; 
 }
 
 .content-block {
@@ -397,23 +378,27 @@ a {
   z-index: 1;
 }
 
-.projects div:nth-child(1) {
-  left: 50%;
+.content-container div:nth-child(1) {
+  left: 25%;
+  /* transform-origin: 100% 0; */
 }
 
-.projects div:nth-child(2) {
-  right: 50%;
-  top: 50px;
-}
-
-.projects div:nth-child(3) {
-  left: 50%;
+.content-container div:nth-child(2) {
+  right: 0;
   top: 100px;
+  /* transform-origin: 0 0; */
 }
 
-.projects div:nth-child(4) {
-  right: 50%;
-  top: 150px;
+.content-container div:nth-child(3) {
+  left: 0;
+  top: 200px;
+  /* transform-origin: 100% 0; */
+}
+
+.content-container div:nth-child(4) {
+  right: 0;
+  top: 350px;
+  /* transform-origin: 0 0; */
 }
 
 p {
