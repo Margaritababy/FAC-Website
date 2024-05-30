@@ -121,20 +121,24 @@ spinElement.addEventListener("click", () => {
 
 // Chevron spin next
 const chevronNextElement = document.querySelector(".next");
-const contentBlocks = document.querySelectorAll(".content-block");
-const contentContainer = document.querySelector(".content-container")
+// const contentBlocks = document.querySelectorAll(".content-block");
+const contentContainers = document.querySelectorAll(".content-container")
 console.log(chevronNextElement);
 
 chevronNextElement.addEventListener("click", () => {
   setTimeout(() => {
     zoetrope.classList.toggle("animate-chevron-next");
-    contentContainer.classList.toggle("animate-content-next");
+    contentContainers.forEach (container => {
+      container.classList.toggle("animate-content-next");
+    })
   }, 100);
 
 
   zoetrope.addEventListener("animationend", () => {
     zoetrope.classList.remove("animate-chevron-next");
-    contentContainer.classList.remove("animate-content-next");
+    contentContainers.forEach (container => {
+      container.classList.remove("animate-content-next");
+    })
   })
 });
 

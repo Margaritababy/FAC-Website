@@ -357,7 +357,7 @@ a {
 }
 
 .content-container {
-  /* border: 1px solid black; */
+  border: 1px solid black;
   position: relative;
   margin: 40px auto;
   width: 900px;
@@ -383,29 +383,9 @@ a {
   top: -15%;
 }
 
-/* .content-container {
-  opacity: 0;
-} */
-
 .active {
   opacity: 1;
 }
-
-/* .content-container div:nth-child(1) {
-  top: 0;
-}
-
-.content-container div:nth-child(2) {
-  top: 25%;
-}
-
-.content-container div:nth-child(3) {
-  top: 50%;
-}
-
-.content-container div:nth-child(4) {
-  top: 75%;
-} */
 
 p {
   position: relative;
