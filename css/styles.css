@@ -356,12 +356,31 @@ a {
   text-decoration: none;
 }
 
+.section-content {
+  position: relative;
+}
+
 .content-container {
   border: 1px solid black;
-  position: relative;
-  margin: 40px auto;
+  position: absolute;
   width: 900px;
   height: 600px; 
+  left: calc(50% - 450px);
+}
+
+/* .top-block {
+} */
+
+.middle-block {
+  top: 700px;
+}
+
+.bottom-block {
+  top: 1400px;
+}
+
+.hidden-content {
+  opacity: 0;
 }
 
 .content-block {
