@@ -122,7 +122,7 @@ spinElement.addEventListener("click", () => {
 // Chevron spin next
 const chevronNextElement = document.querySelector(".next");
 // const contentBlocks = document.querySelectorAll(".content-block");
-const contentContainers = document.querySelectorAll(".content-container:not(.hidden-content)");
+const contentContainers = document.querySelectorAll(".content-container");
 const hiddenContent = document.querySelector(".hidden-content");
 console.log(chevronNextElement);
 

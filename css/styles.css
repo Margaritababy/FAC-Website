@@ -369,6 +369,7 @@ a {
 }
 
 /* .top-block {
+  top: -600px;
 } */
 
 .middle-block {
@@ -380,7 +381,14 @@ a {
 }
 
 .hidden-content {
-  opacity: 0;
+  /* opacity: 0; */
+  top: -600px;
+}
+
+.slide-cover {
+  top: -600px;
+  z-index: -1;
+  /* display: none; */
 }
 
 .content-block {
