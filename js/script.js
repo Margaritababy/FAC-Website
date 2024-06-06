@@ -124,11 +124,25 @@ const chevronNextElement = document.querySelector(".next");
 // const contentBlocks = document.querySelectorAll(".content-block");
 const contentContainers = document.querySelectorAll(".content-container");
 const hiddenContent = document.querySelector(".hidden-content");
-console.log(chevronNextElement);
+
 
 chevronNextElement.addEventListener("click", () => {
   setTimeout(() => {
     zoetrope.classList.toggle("animate-chevron-next");
+    
+    if (hiddenContent.style.display === 'none' || hiddenContent.style.display === '') {
+      hiddenContent.style.display = 'block';
+      console.log('We made it');
+      setTimeout(() => {
+        hiddenContent.style.top = '0';
+      }, 10); // Small delay to allow for display change
+    } else {
+      hiddenContent.style.top = '100%';
+      setTimeout(() => {
+        hiddenContent.style.display = 'none';
+      }, 1500); // Match the transition duration
+    }
+
     contentContainers.forEach (container => {
       container.classList.toggle("animate-content-next");
     })
@@ -160,20 +174,20 @@ chevronPrevElement.addEventListener("click", () => {
 
 
 // Expand content and hide spin and nav elements
-const middleSlide = document.querySelector(".slide-middle");
-const expandButton = document.querySelector(".expand");
-const navElement = document.querySelector(".nav-bar");
+// const middleSlide = document.querySelector(".slide-middle");
+// const expandButton = document.querySelector(".expand");
+// const navElement = document.querySelector(".nav-bar");
 
-expandButton.addEventListener("click", () => {
-  console.log('Class List ', middleSlide.classList);
-  middleSlide.classList.toggle("expanded");
-  if (middleSlide.classList.contains("expanded")) {
-    spinElement.style.zIndex = "-1";
-    navElement.style.zIndex = "-1";
-  } else {
-    setTimeout(() => {
-      spinElement.style.zIndex = "0";
-      navElement.style.zIndex = "0";
-    }, 500);
-  }
-});
+// expandButton.addEventListener("click", () => {
+//   console.log('Class List ', middleSlide.classList);
+//   middleSlide.classList.toggle("expanded");
+//   if (middleSlide.classList.contains("expanded")) {
+//     spinElement.style.zIndex = "-1";
+//     navElement.style.zIndex = "-1";
+//   } else {
+//     setTimeout(() => {
+//       spinElement.style.zIndex = "0";
+//       navElement.style.zIndex = "0";
+//     }, 500);
+//   }
+// });
