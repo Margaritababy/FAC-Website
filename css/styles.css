@@ -382,15 +382,16 @@ a {
 
 .hidden-content {
   /* opacity: 0; */
-  top: -600px;
+  top: -700px;
   display: none; 
-  transition: top 0.5s ease;
+  transition: top 8s ease;
 }
 
 .slide-cover {
   top: -600px;
   z-index: -1;
   background-color: #E3DFD2;
+  border: 1px solid red;
   /* display: none; */
 }
 

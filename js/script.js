@@ -122,35 +122,44 @@ spinElement.addEventListener("click", () => {
 // Chevron spin next
 const chevronNextElement = document.querySelector(".next");
 // const contentBlocks = document.querySelectorAll(".content-block");
-const contentContainers = document.querySelectorAll(".content-container");
+const contentContainers = document.querySelectorAll(".content-container:not(.slide-cover)");
 const hiddenContent = document.querySelector(".hidden-content");
 
 
 chevronNextElement.addEventListener("click", () => {
   setTimeout(() => {
     zoetrope.classList.toggle("animate-chevron-next");
+
     
-    if (hiddenContent.style.display === 'none' || hiddenContent.style.display === '') {
-      hiddenContent.style.display = 'block';
-      console.log('We made it');
-      setTimeout(() => {
-        hiddenContent.style.top = '0';
-      }, 10); // Small delay to allow for display change
-    } else {
-      hiddenContent.style.top = '100%';
-      setTimeout(() => {
-        hiddenContent.style.display = 'none';
-      }, 1500); // Match the transition duration
-    }
+      
+    // setTimeout(() => {
+    //   hiddenContent.style.top = '0';
+    // }, 10); // Small delay to allow for display change
+    
+    // if (hiddenContent.style.display === 'none' || hiddenContent.style.display === '') {
+    //   hiddenContent.style.display = 'block';
+      
+    //   setTimeout(() => {
+    //     hiddenContent.style.top = '0';
+    //   }, 10); 
+    // } else {
+    //   hiddenContent.style.top = '100%';
+    //   console.log('We made it');
+    //   setTimeout(() => {
+    //     hiddenContent.style.display = 'none';
+    //   }, 1500); 
+    // }
 
     contentContainers.forEach (container => {
       container.classList.toggle("animate-content-next");
     })
   }, 100);
+  
 
 
   zoetrope.addEventListener("animationend", () => {
     zoetrope.classList.remove("animate-chevron-next");
+    hiddenContent.style.display = 'block';
     contentContainers.forEach (container => {
       container.classList.remove("animate-content-next");
     })
