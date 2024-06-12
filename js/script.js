@@ -130,11 +130,9 @@ chevronNextElement.addEventListener("click", () => {
   setTimeout(() => {
     zoetrope.classList.toggle("animate-chevron-next");
 
-    
-      
-    // setTimeout(() => {
-    //   hiddenContent.style.top = '0';
-    // }, 10); // Small delay to allow for display change
+    setTimeout(() => {
+      hiddenContent.style.top = '0';
+    }, 10); // Small delay to allow for display change
     
     // if (hiddenContent.style.display === 'none' || hiddenContent.style.display === '') {
     //   hiddenContent.style.display = 'block';
@@ -155,11 +153,11 @@ chevronNextElement.addEventListener("click", () => {
     })
   }, 100);
   
-
+  hiddenContent.style.display = 'block';
 
   zoetrope.addEventListener("animationend", () => {
     zoetrope.classList.remove("animate-chevron-next");
-    hiddenContent.style.display = 'block';
+    
     contentContainers.forEach (container => {
       container.classList.remove("animate-content-next");
     })
