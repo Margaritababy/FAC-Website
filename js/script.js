@@ -149,7 +149,18 @@ chevronNextElement.addEventListener("click", () => {
     // }
 
     contentContainers.forEach (container => {
-      container.classList.toggle("animate-content-next");
+      // container.classList.toggle("animate-content-next");
+      // container.style.top = '0';
+
+      const currentTop = window.getComputedStyle(container).top; // Get the current 'top' value
+      console.log('CURRENT TOP: ', currentTop);
+
+      // Convert the current 'top' value to a number (in pixels)
+      const currentTopValue = parseFloat(currentTop);
+      const newTopValue = currentTopValue + 700;
+
+      container.style.top = newTopValue + 'px';
+
     })
   }, 100);
   
