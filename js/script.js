@@ -129,9 +129,12 @@ const hiddenContent = document.querySelector(".hidden-content");
 chevronNextElement.addEventListener("click", () => {
   setTimeout(() => {
     zoetrope.classList.toggle("animate-chevron-next");
+    const lastSlide = contentContainers[contentContainers.length - 1];
+    console.log('LAST SLIDE: ', lastSlide);
 
     setTimeout(() => {
       hiddenContent.style.top = '0';
+      lastSlide.classList.toggle("hidden-content")
     }, 10); // Small delay to allow for display change
     
     // if (hiddenContent.style.display === 'none' || hiddenContent.style.display === '') {

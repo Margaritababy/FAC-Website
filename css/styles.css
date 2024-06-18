@@ -365,10 +365,15 @@ a {
 .content-container {
   /* border: 1px solid black; */
   position: absolute;
+  z-index: -2;
   width: 900px;
   height: 600px; 
   left: calc(50% - 450px);
   transition: top 1.5s ease-in-out;
+}
+
+.top-cover {
+  top: -700px;
 }
 
 .top-block {
@@ -383,19 +388,21 @@ a {
   top: 1400px;
 }
 
-.hidden-content {
-  /* opacity: 0; */
+.bottom-cover {
+  top: 2100px;
+}
+
+/* .hidden-content {
+  opacity: 0;
   top: -700px;
   z-index: -2;
   display: none; 
-  
-}
+} */
 
 .slide-cover {
-  top: -700px;
   z-index: -1;
   background-color: #E3DFD2;
-  /* border: 1px solid red; */
+  border: 1px solid red;
   /* display: none; */
 }
 
