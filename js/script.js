@@ -14,12 +14,12 @@ buttons.forEach((button) => {
     const elements = document.querySelectorAll('.slide-left, .slide-right, .slide-middle');
     // Iterate over the selected elements
     elements.forEach(element => {
-      console.log('ELEMENT: ', element);
+      // console.log('ELEMENT: ', element);
       element.classList.toggle('hidden');
     });
 
     setTimeout(() => {
-      console.log('Active: ', activeSlide);
+      // console.log('Active: ', activeSlide);
       let newMiddleIndex = [...slides.children].indexOf(activeSlide) + offset
       let newLeftIndex = newMiddleIndex - 1
       let newRightIndex = newMiddleIndex + 1
@@ -36,7 +36,7 @@ buttons.forEach((button) => {
         
         // Remove right slide class
         slides.children[newRightIndex + 1].className = "slide";
-        console.log('Start of slides: ', newLeftIndex);
+        // console.log('Start of slides: ', newLeftIndex);
       }
 
       else if (newMiddleIndex >= slides.children.length - 1) {
@@ -48,10 +48,10 @@ buttons.forEach((button) => {
           newRightIndex = 0
         }
         // slides.children[newLeftIndex - 1].className = "slide";
-        console.log('End of slides: ', newRightIndex);
+        // console.log('End of slides: ', newRightIndex);
       }
 
-      console.log('New indexes: ', newMiddleIndex, newRightIndex, newLeftIndex);
+      // console.log('New indexes: ', newMiddleIndex, newRightIndex, newLeftIndex);
       slides.children[newMiddleIndex].dataset.active = true
       delete activeSlide.dataset.active
       // element.className = "newClass1 newClass2";
@@ -74,9 +74,9 @@ buttons.forEach((button) => {
         slides.children[newRightIndex + 1].className = "slide"; 
       }
 
-      console.log('Elements; ', elements);
-      console.log('Updated classes: ', slides.children[newMiddleIndex], slides.children[newRightIndex], slides.children[newLeftIndex])
-      console.log(slides);
+      // console.log('Elements; ', elements);
+      // console.log('Updated classes: ', slides.children[newMiddleIndex], slides.children[newRightIndex], slides.children[newLeftIndex])
+      // console.log(slides);
   
     }, 1500);
 
@@ -84,7 +84,7 @@ buttons.forEach((button) => {
       const elementsAfter = document.querySelectorAll('.slide-left, .slide-right, .slide-middle');
       // Iterate over the selected elements
       elementsAfter.forEach(element => {
-        console.log('ELEMENT: ', element);
+        // console.log('ELEMENT: ', element);
         element.classList.remove('hidden');
       });
       button.disabled = false;
@@ -104,14 +104,14 @@ spinElement.addEventListener("click", () => {
   const elements = document.querySelectorAll('.slide-left, .slide-right, .slide-middle');
   // Iterate over the selected elements
   elements.forEach(element => {
-    console.log('ELEMENT: ', element);
+    // console.log('ELEMENT: ', element);
     element.classList.toggle('hidden');
   });
   zoetrope.classList.toggle("animate");
 
   zoetrope.addEventListener("animationend", () => {
     elements.forEach(element => {
-      console.log('ELEMENT: ', element);
+      // console.log('ELEMENT: ', element);
       element.classList.remove('hidden');
     });
     zoetrope.classList.remove("animate");
@@ -130,33 +130,19 @@ chevronNextElement.addEventListener("click", () => {
   setTimeout(() => {
     zoetrope.classList.toggle("animate-chevron-next");
     const lastSlide = contentContainers[contentContainers.length - 1];
-    console.log('LAST SLIDE: ', lastSlide);
+    // console.log('LAST SLIDE: ', lastSlide);
 
-    setTimeout(() => {
-      hiddenContent.style.top = '0';
-      lastSlide.classList.toggle("hidden-content")
-    }, 10); // Small delay to allow for display change
-    
-    // if (hiddenContent.style.display === 'none' || hiddenContent.style.display === '') {
-    //   hiddenContent.style.display = 'block';
-      
-    //   setTimeout(() => {
-    //     hiddenContent.style.top = '0';
-    //   }, 10); 
-    // } else {
-    //   hiddenContent.style.top = '100%';
-    //   console.log('We made it');
-    //   setTimeout(() => {
-    //     hiddenContent.style.display = 'none';
-    //   }, 1500); 
-    // }
+    // setTimeout(() => {
+    //   hiddenContent.style.top = '0';
+    //   lastSlide.classList.toggle("hidden-content")
+    // }, 10); 
 
     contentContainers.forEach (container => {
-      // container.classList.toggle("animate-content-next");
-      // container.style.top = '0';
+      // Add transition style
+      container.classList.toggle("transition-top");
 
       const currentTop = window.getComputedStyle(container).top; // Get the current 'top' value
-      console.log('CURRENT TOP: ', currentTop);
+      // console.log('CURRENT TOP: ', currentTop);
 
       // Convert the current 'top' value to a number (in pixels)
       const currentTopValue = parseFloat(currentTop);
@@ -167,13 +153,19 @@ chevronNextElement.addEventListener("click", () => {
     })
   }, 100);
   
-  hiddenContent.style.display = 'block';
-
   zoetrope.addEventListener("animationend", () => {
     zoetrope.classList.remove("animate-chevron-next");
     
     contentContainers.forEach (container => {
-      container.classList.remove("animate-content-next");
+      // Remove transition style 
+      container.classList.remove("transition-top");
+
+      // Move classes down 1 step
+      const containerClassList = container.classList.item(1)
+      console.log('container class list: ', containerClassList);
+
+
+      container.style.cssText = '';
     })
   })
 });

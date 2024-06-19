@@ -369,6 +369,9 @@ a {
   width: 900px;
   height: 600px; 
   left: calc(50% - 450px);
+}
+
+.transition-top {
   transition: top 1.5s ease-in-out;
 }
 
