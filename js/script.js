@@ -152,21 +152,33 @@ chevronNextElement.addEventListener("click", () => {
 
     })
   }, 100);
+
+  const listOfClasses = ["top-cover", "top-block", "middle-block", "bottom-block"];
   
   zoetrope.addEventListener("animationend", () => {
     zoetrope.classList.remove("animate-chevron-next");
     
-    contentContainers.forEach (container => {
+    contentContainers.forEach ((container, index) => {
       // Remove transition style 
       container.classList.remove("transition-top");
 
       // Move classes down 1 step
-      const containerClassList = container.classList.item(1)
-      console.log('container class list: ', containerClassList);
+      const containerClass = container.classList.item(1)
+      const indexOfClassInList = listOfClasses.indexOf(containerClass);
+      console.log('container class & index in list: ', containerClass, indexOfClassInList);
 
-
+      if (indexOfClassInList == 3) {
+        var newClass = listOfClasses[0];
+      } else {
+        var newClass = listOfClasses[indexOfClassInList + 1];
+      }
+      console.log(newClass);
+      
+      container.classList.replace(containerClass, newClass);
       container.style.cssText = '';
+
     })
+    console.log('----------');
   })
 });
 
