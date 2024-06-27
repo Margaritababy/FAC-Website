@@ -363,7 +363,7 @@ a {
 }
 
 .content-container {
-  /* border: 1px solid black; */
+  border-bottom: 1px solid black;
   position: absolute;
   z-index: -2;
   width: 900px;
@@ -405,7 +405,7 @@ a {
 .slide-cover {
   z-index: -1;
   background-color: #E3DFD2;
-  border: 1px solid red;
+  border: none;
   /* display: none; */
 }
 
