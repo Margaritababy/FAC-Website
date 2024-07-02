@@ -395,12 +395,12 @@ a {
   top: 2100px;
 }
 
-/* .hidden-content {
+.hidden {
   opacity: 0;
-  top: -700px;
+  /* top: -700px;
   z-index: -2;
-  display: none; 
-} */
+  display: none;  */
+}
 
 .slide-cover {
   z-index: -1;

@@ -123,23 +123,14 @@ spinElement.addEventListener("click", () => {
 const chevronNextElement = document.querySelector(".next");
 // const contentBlocks = document.querySelectorAll(".content-block");
 const contentContainers = document.querySelectorAll(".content-container:not(.slide-cover)");
-// const hiddenContent = document.querySelector(".hidden-content");
-
+let direction = 'right';
 
 chevronNextElement.addEventListener("click", () => {
-  
   console.log('Next button clicked');
 
   setTimeout(() => {
     zoetrope.classList.toggle("animate-chevron-next");
     console.log('Animation logic running')
-    // const lastSlide = contentContainers[contentContainers.length - 1];
-    // console.log('LAST SLIDE: ', lastSlide);
-
-    // setTimeout(() => {
-    //   hiddenContent.style.top = '0';
-    //   lastSlide.classList.toggle("hidden-content")
-    // }, 10); 
 
     contentContainers.forEach (container => {
       // Add transition style
@@ -158,9 +149,43 @@ chevronNextElement.addEventListener("click", () => {
   }, 100);
 });
 
+
+// Chevron spin prev
+const chevronPrevElement = document.querySelector(".prev");
+
+chevronPrevElement.addEventListener("click", () => {
+  direction = 'left';
+  console.log(chevronPrevElement);
+  console.log('Direction: ', direction);
+
+  setTimeout(() => {
+    zoetrope.classList.toggle("animate-chevron-prev");
+    console.log('Animation logic running')
+
+    contentContainers.forEach (container => {
+      // Add transition style
+      container.classList.toggle("transition-top");
+
+      const currentTop = window.getComputedStyle(container).top; // Get the current 'top' value
+      // console.log('CURRENT TOP: ', currentTop);
+
+      // Convert the current 'top' value to a number (in pixels)
+      const currentTopValue = parseFloat(currentTop);
+      const newTopValue = currentTopValue - 700;
+
+      container.style.top = newTopValue + 'px';
+
+    })
+  }, 100);
+
+});
+
+
+// After Zoetrope animation, rotate classes depending on which chevron clicked
 zoetrope.addEventListener("animationend", () => {
-  const listOfClasses = ["top-cover", "top-block", "middle-block", "bottom-block"];
+  const listOfClasses = ["top-cover", "top-block", "middle-block", "bottom-block", "bottom-cover", "hidden"];
   console.log('Class switching taking place')
+  console.log('Direction: ', direction);
   zoetrope.classList.remove("animate-chevron-next");
   
   contentContainers.forEach ((container, index) => {
@@ -173,7 +198,7 @@ zoetrope.addEventListener("animationend", () => {
     console.log('container class & index in list: ', containerClass, indexOfClassInList);
 
     let newClass;
-    if (indexOfClassInList === 3) {
+    if (indexOfClassInList === 5) {
       newClass = listOfClasses[0];
     } else {
       newClass = listOfClasses[indexOfClassInList + 1];
@@ -184,23 +209,11 @@ zoetrope.addEventListener("animationend", () => {
     container.style.cssText = '';
 
   })
+
+  // Reset direction variable
+  direction = 'right';
   console.log('----------');
 })
-
-
-// Chevron spin prev
-const chevronPrevElement = document.querySelector(".prev");
-console.log(chevronPrevElement);
-
-chevronPrevElement.addEventListener("click", () => {
-  // Hide plates
-  // document.querySelector(".data-slides").classList.toggle("elementHidden");
-  zoetrope.classList.toggle("animate-chevron-prev");
-
-  zoetrope.addEventListener("animationend", () => {
-    zoetrope.classList.remove("animate-chevron-prev");
-  })
-});
 
 
 // Expand content and hide spin and nav elements
