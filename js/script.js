@@ -121,6 +121,8 @@ spinElement.addEventListener("click", () => {
 
 // Chevron spin next
 const chevronNextElement = document.querySelector(".next");
+// Chevron spin prev
+const chevronPrevElement = document.querySelector(".prev");
 // const contentBlocks = document.querySelectorAll(".content-block");
 const contentContainers = document.querySelectorAll(".content-container:not(.slide-cover)");
 let direction = 'right';
@@ -132,8 +134,15 @@ chevronNextElement.addEventListener("click", () => {
     zoetrope.classList.toggle("animate-chevron-next");
     console.log('Animation logic running')
 
+    // Ignore container under cover at bottom
     contentContainers.forEach (container => {
       // Add transition style
+      const containerClass = container.classList.item(1)
+      if (containerClass === "bottom-cover") {
+        console.log('DO NOT MOVE ', containerClass);
+        return;
+      }
+
       container.classList.toggle("transition-top");
 
       const currentTop = window.getComputedStyle(container).top; // Get the current 'top' value
@@ -150,9 +159,6 @@ chevronNextElement.addEventListener("click", () => {
 });
 
 
-// Chevron spin prev
-const chevronPrevElement = document.querySelector(".prev");
-
 chevronPrevElement.addEventListener("click", () => {
   direction = 'left';
   console.log(chevronPrevElement);
@@ -163,6 +169,13 @@ chevronPrevElement.addEventListener("click", () => {
     console.log('Animation logic running')
 
     contentContainers.forEach (container => {
+      // Ignore container under cover at top
+      const containerClass = container.classList.item(1)
+      if (containerClass === "top-cover") {
+        console.log('DO NOT MOVE ', containerClass);
+        return;
+      }
+
       // Add transition style
       container.classList.toggle("transition-top");
 
@@ -186,7 +199,9 @@ zoetrope.addEventListener("animationend", () => {
   const listOfClasses = ["top-cover", "top-block", "middle-block", "bottom-block", "bottom-cover", "hidden"];
   console.log('Class switching taking place')
   console.log('Direction: ', direction);
+
   zoetrope.classList.remove("animate-chevron-next");
+  zoetrope.classList.remove("animate-chevron-prev");
   
   contentContainers.forEach ((container, index) => {
     // Remove transition style 
@@ -198,11 +213,20 @@ zoetrope.addEventListener("animationend", () => {
     console.log('container class & index in list: ', containerClass, indexOfClassInList);
 
     let newClass;
-    if (indexOfClassInList === 5) {
-      newClass = listOfClasses[0];
+    if (direction === 'right') {
+      if (indexOfClassInList === 5) {
+        newClass = listOfClasses[0];
+      } else {
+        newClass = listOfClasses[indexOfClassInList + 1];
+      }
     } else {
-      newClass = listOfClasses[indexOfClassInList + 1];
+      if (indexOfClassInList === 0) {
+        newClass = listOfClasses[5];
+      } else {
+        newClass = listOfClasses[indexOfClassInList - 1];
+      }
     }
+    
     console.log(newClass);
     
     container.classList.replace(containerClass, newClass);
@@ -214,23 +238,3 @@ zoetrope.addEventListener("animationend", () => {
   direction = 'right';
   console.log('----------');
 })
-
-
-// Expand content and hide spin and nav elements
-// const middleSlide = document.querySelector(".slide-middle");
-// const expandButton = document.querySelector(".expand");
-// const navElement = document.querySelector(".nav-bar");
-
-// expandButton.addEventListener("click", () => {
-//   console.log('Class List ', middleSlide.classList);
-//   middleSlide.classList.toggle("expanded");
-//   if (middleSlide.classList.contains("expanded")) {
-//     spinElement.style.zIndex = "-1";
-//     navElement.style.zIndex = "-1";
-//   } else {
-//     setTimeout(() => {
-//       spinElement.style.zIndex = "0";
-//       navElement.style.zIndex = "0";
-//     }, 500);
-//   }
-// });
