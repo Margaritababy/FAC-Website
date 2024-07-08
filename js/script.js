@@ -100,14 +100,20 @@ const zoetrope = document.querySelector(".zoetrope");
 const spinElement = document.querySelector(".spin");
 
 spinElement.addEventListener("click", () => {
-  // Hide plates
-  const elements = document.querySelectorAll('.slide-left, .slide-right, .slide-middle');
+  // Hide headings & everything else
+  const elements = document.querySelectorAll('.slide-left, .slide-right, .slide-middle, .nav-bar');
+  
   // Iterate over the selected elements
   elements.forEach(element => {
     // console.log('ELEMENT: ', element);
     element.classList.toggle('hidden');
   });
-  zoetrope.classList.toggle("animate");
+
+  setTimeout(() => {
+    // console.log('This message is displayed after 2 seconds');
+    zoetrope.classList.toggle("animate");
+  }, 800);
+  
 
   zoetrope.addEventListener("animationend", () => {
     elements.forEach(element => {
@@ -195,8 +201,11 @@ chevronPrevElement.addEventListener("click", () => {
 
 
 // After Zoetrope animation, rotate classes depending on which chevron clicked
-zoetrope.addEventListener("animationend", () => {
-  const listOfClasses = ["top-cover", "top-block", "middle-block", "bottom-block", "bottom-cover", "hidden"];
+zoetrope.addEventListener("animationend", (event) => {
+  if (event.animationName === 'zoetrope') {
+    console.log('Small animate');
+  } else {
+    const listOfClasses = ["top-cover", "top-block", "middle-block", "bottom-block", "bottom-cover", "hidden"];
   console.log('Class switching taking place')
   console.log('Direction: ', direction);
 
@@ -237,4 +246,7 @@ zoetrope.addEventListener("animationend", () => {
   // Reset direction variable
   direction = 'right';
   console.log('----------');
+
+  } 
+
 })
